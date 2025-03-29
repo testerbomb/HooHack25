@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 //code from auth0:
-function runauth() {
+function authenticate() {
   // Import required libraries
   const express = require("express");
   const { auth } = require("express-openid-connect");
@@ -38,4 +38,4 @@ function runauth() {
   });
 }
 
-module.exports = { runauth };
+module.exports = { authenticate };
