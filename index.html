@@ -12,23 +12,13 @@
         <h1 style="text-align: center;">CarboLoad Emissions Tracker</h1>
     </div>
 
-    <main> 
+    <main>
         <div id="inputbox">
-            <h2>Please Log In Or Create An Account</h2>
-            <button id="authButton" onclick="runAuth()">Log In</button>
+            <h2>Please Log In Or Create An account</h2>
+            <input type="text" placeholder="Username" id="Username"></input>
+            <input type="password" placeholder="Password" id="Password"></input>
         </div>
     </main>
-    <script src="src/auth.js"></script>
-    <script>
-        function runAuth() {
-            
-            if (typeof authenticate === 'function') {
-                authenticate();
-            } else {
-                console.error('Authentication function not found in auth.js');
-            }
-        }
-    </script>
 
     <div id = "footer">
         <p>MIT License
