@@ -13,7 +13,7 @@ function runauth() {
   const config = {
     authRequired: false, // Whether authentication is required for all routes
     auth0Logout: true, // Allow logout through Auth0
-    secret: process.env.SECRET, // Secret key
+    secret: SECRET, // Secret key
     baseURL: "https://carboload.netlify.app", // Your app's base URL
     clientID: "ZXub5vMu1fCKRM79MYhOCG68Lnk81yjs", // Your Auth0 Client ID
     issuerBaseURL: "https://dev-w0ejqwv8i5gi2wfp.us.auth0.com", // Your Auth0 domain
