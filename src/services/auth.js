@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 //code from auth0:
 function authenticate() {
   // Import required libraries
