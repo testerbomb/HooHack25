@@ -1,8 +1,9 @@
+const express = require("express");
+const { auth } = require("express-openid-connect");
+
 //code from auth0:
 function authenticate() {
   // Import required libraries
-  const express = require("express");
-  const { auth } = require("express-openid-connect");
 
   // Create an Express application
   const app = express();
