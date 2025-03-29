@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HELLO</title>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div id="header">
@@ -13,14 +14,24 @@
     </div>
 
     <main>
-        <div id = "emissionsbox">
+        <div id = "emissionscenter">
             <h2>My Activity:</h2>
-            <div>
-                <h3>Event1</h3>
+            <div id = "emissionsbox">
+                <div class = emissioninstance>
+                    <div>
+                        <h3>Drive to Pennsylvania</h3>
+                    </div>
+                    <div>
+                        <h3>10KG</h3>
+                    </div>
+                    <div>
+                        <h3>Date: 3/29/2025</h3>
+                    </div>
+                </div>
             </div>
-            <div>
-                <h3>Event2</h3>
-            </div>
+        </div>
+        <div id = info>
+            <canvas id = speedometer width = 1000 height = 1000></canvas>
         </div>
     </main>
 
