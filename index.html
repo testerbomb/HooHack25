@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="login.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HELLO</title>
+    <title>CarboLoad</title>
 </head>
 <body>
     <div id="header">
@@ -13,11 +13,45 @@
     </div>
 
     <main>
-        <div id="inputbox">
-            <h2>Please Log In Or Create An account</h2>
-            <input type="text" placeholder="Username" id="Username"></input>
-            <input type="password" placeholder="Password" id="Password"></input>
-        </div>
+        <h2>Login</h2>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p id="errorMessage" style="color: red; display: none;">Invalid username or password.</p>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            
+            fetch('http://localhost:8080/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = 'account.html';
+                } else {
+                    document.getElementById('errorMessage').style.display = 'block';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
     </main>
 
     <div id = "footer">

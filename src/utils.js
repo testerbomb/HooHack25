@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 function getCO2EmissionByType(type) {
   const filePath = "../data/car-emmison.json";
   try {
@@ -28,7 +26,4 @@ function getCO2EmissionByType(type) {
 function getCO2emissionByGallon(distance, milage) {
   return Math.floor((distance / milage) * 8887);
 }
-module.exports = {
-  getCO2EmissionByType,
-  getCO2emissionByGallon,
-};
+export { getCO2EmissionByType, getCO2emissionByGallon };
