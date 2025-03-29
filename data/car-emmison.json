@@ -1,0 +1,34 @@
+[
+    {
+        "type": "Sedan",
+        "average_co2_emission_g_per_mile": 350
+    },
+    {
+        "type": "Pickup Truck",
+        "average_co2_emission_g_per_mile": 450
+    },
+    {
+        "type": "SUV",
+        "average_co2_emission_g_per_mile": 400
+    },
+    {
+        "type": "Hatchback",
+        "average_co2_emission_g_per_mile": 320
+    },
+    {
+        "type": "Convertible",
+        "average_co2_emission_g_per_mile": 370
+    },
+    {
+        "type": "Coupe",
+        "average_co2_emission_g_per_mile": 360
+    },
+    {
+        "type": "Minivan",
+        "average_co2_emission_g_per_mile": 380
+    },
+    {
+        "type": "Station Wagon",
+        "average_co2_emission_g_per_mile": 340
+    }
+]
