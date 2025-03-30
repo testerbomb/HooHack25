@@ -2,6 +2,8 @@ package com.carboload.demo.controller;
 
 import org.springframework.web.bind.annotation.*;
 
+import com.carboload.demo.model.User;
+
 @RestController
 @RequestMapping("/api")
 public class LogInController {
@@ -13,9 +15,9 @@ public class LogInController {
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest loginRequest) {
         if (loginRequest.getUsername().equals(validUsername) && loginRequest.getPassword().equals(validPassword)) {
-            return new LoginResponse(true, "Login successful!");
+            return new LoginResponse(true, new User(loginRequest.getUsername(), "NOTHING YET"));
         } else {
-            return new LoginResponse(false, "Invalid username or password.");
+            return new LoginResponse(false, null);
         }
     }
 
@@ -45,11 +47,11 @@ public class LogInController {
     // LoginResponse POJO
     public static class LoginResponse {
         private boolean success;
-        private String message;
+        private User user;
 
-        public LoginResponse(boolean success, String message) {
+        public LoginResponse(boolean success, User user) {
             this.success = success;
-            this.message = message;
+            this.user = user;
         }
 
         // Getters and Setters
@@ -61,12 +63,12 @@ public class LogInController {
             this.success = success;
         }
 
-        public String getMessage() {
-            return message;
+        public User getUser() {
+            return this.user;
         }
 
-        public void setMessage(String message) {
-            this.message = message;
+        public void setMessage(User user) {
+            this.user = user;
         }
     }
 }

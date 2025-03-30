@@ -1,21 +1,21 @@
 package com.carboload.demo.model;
 
 public class User {
-    private String name;
+    private String username;
     private String email;
 
     // Constructor, getters, and setters
-    public User(String name, String email) {
-        this.name = name;
+    public User(String username, String email) {
+        this.username = username;
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return this.username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
