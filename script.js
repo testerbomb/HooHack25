@@ -13,13 +13,12 @@ this.amount = amount;
 
 
 function addemissioninstance(desc = "description", am = "amount", da = "date") {
-  const secondElement = emissionsBox.children[1];
     const secondElement = emissionsBox.children[1];
     let ntry = new entryObj(desc, am, da);
     userEntries.push(ntry);
 
-  const emissionInstance = document.createElement("div");
-  emissionInstance.classList.add("emissioninstance");
+    const emissionInstance = document.createElement('div');
+    emissionInstance.classList.add("emissioninstance");
 
   const descriptiondiv = document.createElement("div");
   const description = document.createElement("h3");
@@ -348,3 +347,4 @@ function getDays(date) {
 function showInfo() {
     return null;
 }
+ 
