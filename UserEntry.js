@@ -17,10 +17,8 @@ function fetchUserEntries(username) {
     .catch((error) => {
       console.error("Error fetching user entries:", error);
     });
-  return data;
 }
 
-// Example function to display user entries on the page
 function displayUserEntries(entries) {
   for (var i = 0; i < entries.length; i++) {
     console.log(entries[i]);
