@@ -1,38 +1,205 @@
-var canvas = document.getElementById("speedometer");
-var canvascontext = canvas.getContext('2d');
-const speedometerContainer = document.getElementById('colslot1');
+//Adding activity inputs
+const emissionsBox = document.getElementById("emissionsbox");
 
-var width = canvas.offsetWidth;
-var height = canvas.offsetHeight;
+function addemissioninstance(desc = "description", am = "amount", da = "date") {
+    const secondElement = emissionsBox.children[1];
 
-canvascontext.fillStyle = "white";
-canvascontext.fillRect(canvas.width * .1, canvas.height * .1, canvas.width - canvas.width * .2, canvas.height - canvas.height * .2);
-var page = 3;
-var date = new Date();
+    const emissionInstance = document.createElement('div');
+    emissionInstance.classList.add("emissioninstance");
 
-if (page % 4 == 0) {
-    showInfo();
-} else if (page % 4 == 1) {
-    showWeekly();
-} else if (page % 4 == 2) {
-    showMonthly();
-} else {
-    showYearly();
+    const descriptiondiv = document.createElement('div');
+    const description = document.createElement('h3');
+    description.textContent = desc;
+    descriptiondiv.appendChild(description);
+
+    const amountdiv = document.createElement('div');
+    const amount = document.createElement('h3');
+    amount.textContent = am;
+    amountdiv.appendChild(amount);
+
+    const datediv = document.createElement('div');
+    const date = document.createElement('h3');
+    date.textContent = da;
+    datediv.appendChild(date);
+
+    emissionInstance.appendChild(descriptiondiv);
+    emissionInstance.appendChild(amountdiv);
+    emissionInstance.appendChild(datediv);
+
+    if (secondElement) {
+        emissionsBox.insertBefore(emissionInstance, secondElement);
+    } else {
+        emissionsBox.appendChild(emissionInstance);
+    }
+
+
 }
 
-function showYearly() {
 
-        for (i = 0; i < 12; i += 1) {
-            if (i < 11) {
+
+
+//Getting Activity inputs
+const confirm = document.getElementById("confirm");
+const inputWindow = document.getElementById("inputwindow");
+const addActivity = document.getElementById("addemissioninstance");
+confirm.addEventListener("click", function() {
+    addemissioninstance();
+    inputWindow.style.display = "none";
+});
+
+addActivity.addEventListener("click", function() {
+    inputWindow.style.display = "flex";
+});
+
+addActivity.addEventListener("mouseover", function() {
+    addActivity.style.cursor = "pointer";
+});
+
+
+//Drawing the graph
+
+const next = document.getElementById("next");
+const back = document.getElementById("prev");
+var page = 0;
+
+next.addEventListener("click", function() {
+    page += 1;
+    console.log("++");
+    showpage();
+});
+
+back.addEventListener("click", function() {
+    page -= 1;
+    if (page == -1) {
+        page = 3;
+    }
+    console.log("--")
+    showpage();
+});
+
+var canvas = document.getElementById("display");
+var canvascontext = canvas.getContext('2d');
+var width = canvas.width;
+var height = canvas.height;
+
+
+canvascontext.fillStyle = "white";
+canvascontext.fillRect(width * .1, height * .1, width - width * .2, height - height * .2);
+var date = new Date();
+
+function showpage() {
+    canvascontext.clearRect(width * .1, height * .1, width - width * .2, height - height * .2);
+    canvascontext.fillRect(width * .1, height * .1, width - width * .2, height - height * .2);
+    if (page % 4 == 0) {
+        showInfo();
+    } else if (page % 4 == 1) {
+        showGraph(7, 5, "week");
+    } else if (page % 4 == 2) {
+        var date = new Date();
+        const d = getDays(date)
+        showGraph(d, 11, "month");
+    } else {
+        showGraph();
+    }
+}
+
+function getMonth(int) {
+    if (int == 0) {
+        return "January";
+    } else if (int == 1) {
+        return "February";
+    } else if (int == 2) {
+        return "March";
+    } else if (int == 3) {
+        return "April";
+    } else if (int == 4) {
+        return "May";
+    } else if (int == 5) {
+        return "June";
+    } else if (int == 6) {
+        return "July";
+    } else if (int == 7) {
+        return "August";
+    } else if (int == 8) {
+        return "September";
+    } else if (int == 9) {
+        return "October";
+    } else if (int == 10) {
+        return "November";
+    } else {
+        return "December";
+    }
+    
+}
+
+function getDay(int) {
+    if (int == 0) {
+        return "Sunday";
+    } else if (int == 1) {
+        return "Monday";
+    } else if (int == 2) {
+        return "Tuesday";
+    } else if (int == 3) {
+        return "Wednesday";
+    } else if (int == 4) {
+        return "Thursday";
+    } else if (int == 5) {
+        return "Friday";
+    } else {
+        return "Saturday";
+    }
+}
+
+
+function showGraph(row = 12, col = 11, string = "year") {
+        const wgap = width * .1;
+        const hgap = height * .1;
+        canvascontext.font = "15px Arial";
+        canvascontext.textAlign = "center";
+        canvascontext.textBaseline = "middle";
+        for (i = 0; i < row; i += 1) {
+            if (i < col) {
+                canvascontext.fillStyle = 'black';
+                if (string == "year") {
+                    const numBase = (col - 1) * 2;
+                    canvascontext.fillText(numBase - (i * 2), width * .1 + wgap / 1.5, height * .1 + (i * (((height - height * .2 - hgap * 2)))) / (col - 1) + hgap)
+                }
+                if (string == "week") {
+                    const numBase = (col - 1) * 5;
+                    canvascontext.fillText(numBase - (i * 5), width * .1 + wgap / 1.5, height * .1 + (i * (((height - height * .2 - hgap * 2)))) / (col - 1) + hgap);       
+                }
+                if (string == "month") {
+                    const numBase = (col - 1) * 50;
+                        canvascontext.fillText(numBase - (i * 50), width * .1 + wgap / 1.5, height * .1 + (i * (((height - height * .2 - hgap * 2)))) / (col - 1) + hgap);
+
+                }
+                canvascontext.fillStyle = 'white';
                 canvascontext.beginPath();
-                canvascontext.moveTo(canvas.width * .1, canvas.height * .1 + (i * (((canvas.height - canvas.height * .2)))) / 10);
-                canvascontext.lineTo(canvas.width * .1 + canvas.width - canvas.width * .2,  canvas.height * .1 + i * (((canvas.height - canvas.height * .2))/ 10));
+                canvascontext.moveTo(width * .1 + wgap, height * .1 + (i * (((height - height * .2 - hgap * 2)))) / (col - 1) + hgap);
+                canvascontext.lineTo(width * .1 + width - width * .2 - wgap,  height * .1 + i * (((height - height * .2 - hgap * 2))/ (col - 1)) + hgap);
                 canvascontext.stroke();
             }
 
+            canvascontext.fillStyle = 'black';
+                if (string == "year") {
+                    canvascontext.font = "11px Arial"
+                    const numBase = (row - 2) * 2;
+                    canvascontext.fillText(getMonth(i), width * .1 + (i * (((width - width * .2 - wgap * 2)))) / (row - 1) + wgap, height * .1 + height - height * .2 - hgap / 1.5)
+                    canvascontext.font = "15px Arial"
+                }
+                if (string == "week") {
+                   const numBase = (row - 2) * 2;
+                   canvascontext.fillText(getDay(i), width * .1 + (i * (((width - width * .2 - wgap * 2)))) / (row - 1) + wgap, height * .1 + height - height * .2 - hgap / 1.5)
+                }
+                if (string == "month") {
+                    const numBase = (row - 2) * 2;
+                    canvascontext.fillText(i , width * .1 + (i * (((width - width * .2 - wgap * 2)))) / (row - 1) + wgap, height * .1 + height - height * .2 - hgap / 1.5)
+                }
+                canvascontext.fillStyle = 'white';
+
             canvascontext.beginPath();
-            canvascontext.moveTo(canvas.width * .1 + (i * (((canvas.width - canvas.width * .2)))) / 11, canvas.height * .1);
-            canvascontext.lineTo(canvas.width * .1 + (i * (((canvas.width - canvas.width * .2)))) / 11, canvas.height * .1 + canvas.height - canvas.height * .2);
+            canvascontext.moveTo(width * .1 + (i * (((width - width * .2 - wgap * 2)))) / (row - 1) + wgap, height * .1 + hgap);
+            canvascontext.lineTo(width * .1 + (i * (((width - width * .2 - wgap * 2)))) / (row - 1) + wgap, height * .1 + height - height * .2 - hgap);
             canvascontext.stroke();
     }
 
@@ -54,39 +221,8 @@ function getDays(date) {
         return 30;
     }
 }
-function showMonthly() {
-    const d = getDays(date)
-    for (i = 0; i < getDays(date); i += 1) {
-        if (i < 11) {
-            canvascontext.beginPath();
-            canvascontext.moveTo(canvas.width * .1, canvas.height * .1 + (i * (((canvas.height - canvas.height * .2)))) / 10);
-            canvascontext.lineTo(canvas.width * .1 + canvas.width - canvas.width * .2,  canvas.height * .1 + i * (((canvas.height - canvas.height * .2))/ 10));
-            canvascontext.stroke();
-        }
 
-    canvascontext.beginPath();
-    canvascontext.moveTo(canvas.width * .1 + (i * (((canvas.width - canvas.width * .2)))) / (d - 1), canvas.height * .1);
-    canvascontext.lineTo(canvas.width * .1 + (i * (((canvas.width - canvas.width * .2)))) / (d - 1), canvas.height * .1 + canvas.height - canvas.height * .2);
-    canvascontext.stroke();
-}
-
-}
-
-function showWeekly() {
-
-    for (i = 0; i < 7; i += 1) {
-        if (i < 5) {
-            canvascontext.beginPath();
-            canvascontext.moveTo(canvas.width * .1, canvas.height * .1 + (i * (((canvas.height - canvas.height * .2)))) / 4);
-            canvascontext.lineTo(canvas.width * .1 + canvas.width - canvas.width * .2,  canvas.height * .1 + i * (((canvas.height - canvas.height * .2))/ 4));
-            canvascontext.stroke();
-        }
-
-    canvascontext.beginPath();
-    canvascontext.moveTo(canvas.width * .1 + (i * (((canvas.width - canvas.width * .2)))) / 6, canvas.height * .1);
-    canvascontext.lineTo(canvas.width * .1 + (i * (((canvas.width - canvas.width * .2)))) / 6, canvas.height * .1 + canvas.height - canvas.height * .2);
-    canvascontext.stroke();
-}
-
+function showInfo() {
+    return null;
 }
  
