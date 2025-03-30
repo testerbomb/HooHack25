@@ -4,10 +4,11 @@
 <script>
     // Simulate fetching user data from session storage
     const userJSON = sessionStorage.getItem('user');
+    const user = User.parseUserFromJson(userJSON);
 
     if (userJSON) {
         // Parse the user JSON and create an instance of the User class
-        const user = User.parseUserFromJson(userJSON);
+
 
         // Now `user` is an instance of the User class, and you can use it as needed
         console.log(user); // Example: Logging the user object

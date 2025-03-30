@@ -2,16 +2,8 @@ function saveEntries() {
   // Prevent the default behavior (e.g., form submission)
 
   const entries = [
-    {
-      date: [12, 10, 2023],
-      carbonEmmision: 15.5,
-      description: "Drove to work",
-    },
-    {
-      date: [13, 10, 2023],
-      carbonEmmision: 8.2,
-      description: "Used public transport",
-    },
+    new Entry([12, 10, 2023], 15.5, "Drove to work"),
+    new Entry([13, 10, 2023], 8.2, "Used public transport"),
   ];
 
   userTest = User.parseUserFromJson(
@@ -28,7 +20,7 @@ function saveEntries() {
         email: "NOTHING YET",
         userName: "hoo",
       },
-      entries: entries,
+      entries: Entry.toJsonData(entries),
     }),
   })
     .then((response) => response.text())
