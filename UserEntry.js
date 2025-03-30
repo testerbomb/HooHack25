@@ -19,16 +19,12 @@ function fetchUserEntries(username) {
     .catch((error) => {
       console.error("Error fetching user entries:", error);
     });
+  return data;
 }
 
 // Example function to display user entries on the page
 function displayUserEntries(entries) {
-  const entriesContainer = document.getElementById("entriesContainer");
-  entriesContainer.innerHTML = ""; // Clear any existing entries
-
-  entries.forEach((entry) => {
-    const entryElement = document.createElement("div");
-    entryElement.textContent = `Date: ${entry.date}, Value: ${entry.value}`;
-    entriesContainer.appendChild(entryElement);
-  });
+  for (var i = 0; i < entries.length; i++) {
+    console.log(entries[i]);
+  }
 }

@@ -1,3 +1,8 @@
 {
-  "java.compile.nullAnalysis.mode": "disabled"
+  "java.compile.nullAnalysis.mode": "disabled",
+  "liveServer.settings.ignoreFiles": [
+    "**/node_modules/**",
+    "**/user_data/**",
+    "./demo/**"
+  ]
 }

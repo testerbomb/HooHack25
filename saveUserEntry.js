@@ -1,4 +1,4 @@
-function saveEntries(event) {
+function saveEntries() {
   // Prevent the default behavior (e.g., form submission)
 
   const entries = [
