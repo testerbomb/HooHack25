@@ -8,30 +8,44 @@
     <title>HELLO</title>
     <script src="script.js" defer></script>
 </head>
+
+
+<div id="inputwindow">
+    <div id = iwhead>
+        <h2>What did you do today?</h2>
+    </div>
+    <div id = eventTitleBox>
+        <input type = "text" id = eventTitle placeholder="Activity Name">
+        <input type = "text" id = eventdate placeholder="Date (optional)">
+    </div>
+    <div id = eventTitleDescription>
+        <textarea id = eventDescription placeholder="Description"></textarea>
+    </div>
+    <div id = confirmation>
+        <button id = "confirm">Confirm</button>
+    </div>
+</div>
+
+
 <body>
     <div id="header">
         <h1 style="text-align: center;">CarboLoad Emissions Tracker</h1>
     </div>
-
     <main>
         <div id = "emissionscenter">
             <h2>My Activity:</h2>
             <div id = "emissionsbox">
-                <div class = emissioninstance>
-                    <div>
-                        <h3>Drive to Pennsylvania</h3>
-                    </div>
-                    <div>
-                        <h3>10KG</h3>
-                    </div>
-                    <div>
-                        <h3>Date: 3/29/2025</h3>
-                    </div>
+                <div id = addemissioninstance>
+                    <h3>Add Activity</h3>
                 </div>
             </div>
         </div>
         <div id = info>
-            <canvas id = speedometer width = 1000 height = 1000></canvas>
+            <canvas id = display width = 1000 height = 1000></canvas>
+            <div id = "nextandback">
+                <button id = prev>Prev</button>
+                <button id = next>Next</button>
+            </div>
         </div>
     </main>
 
