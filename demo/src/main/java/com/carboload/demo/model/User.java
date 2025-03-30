@@ -1,21 +1,24 @@
 package com.carboload.demo.model;
 
 public class User {
-    private String username;
+    private String userName;
     private String email;
 
-    // Constructor, getters, and setters
-    public User(String username, String email) {
-        this.username = username;
+    // Default no-argument constructor required by Jackson
+    public User() {
+    }
+
+    public User(String email, String userName) {
         this.email = email;
+        this.userName = userName;
     }
 
     public String getUserName() {
-        return this.username;
+        return this.userName;
     }
 
     public void setUserName(String username) {
-        this.username = username;
+        this.userName = username;
     }
 
     public String getEmail() {

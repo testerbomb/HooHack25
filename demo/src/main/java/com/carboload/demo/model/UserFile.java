@@ -2,13 +2,17 @@ package com.carboload.demo.model;
 
 import java.util.List;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 public class UserFile {
 
     public static boolean writeToFile(User user, List<com.carboload.demo.model.UserEntry> list) {
-        File file = new java.io.File("demo/src/main/resources/user_data/" + user.getUserName() + ".inf");
-        try (ObjectOutputStream oos = new ObjectOutputStream(new java.io.FileOutputStream(file))) {
+        // Correct the file path to match the actual location of the user_data directory
+
+        File file = new File(user.getUserName() + ".inf");
+        System.out.println("Attempting to write to file: " + file.getAbsolutePath());
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
             oos.writeObject(list);
             return true;
         } catch (java.io.IOException e) {

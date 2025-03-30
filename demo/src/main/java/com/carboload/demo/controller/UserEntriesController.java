@@ -13,7 +13,6 @@ import com.carboload.demo.model.UserEntry;
 import com.carboload.demo.model.UserFile;
 
 @RestController
-
 @RequestMapping("api/user-entries")
 public class UserEntriesController {
 
@@ -24,13 +23,29 @@ public class UserEntriesController {
 
     @PostMapping("/write")
     public String writeEntries(@RequestBody WriteRequest writeRequest) {
-        boolean success = UserFile.writeToFile(writeRequest.user, writeRequest.entries);
+        System.out.println("WriteRequest received: User = " + writeRequest.getUser());
+        System.out.println("Entries = " + writeRequest.getEntries());
+
+        for (UserEntry entry : writeRequest.getEntries()) {
+            System.out.println("Date: " + java.util.Arrays.toString(entry.getDate()));
+            System.out.println("Carbon Emission: " + entry.getCarbonEmmision());
+            System.out.println("Description: " + entry.getDescription());
+
+            System.out.println("Processing entry: " + entry);
+        }
+        boolean success = UserFile.writeToFile(writeRequest.getUser(), writeRequest.getEntries());
+        System.out.println("Exiting\n");
         return success ? "Entries written successfully" : "Failed to write entries";
     }
 
-    class WriteRequest {
+    // Make WriteRequest a static inner class
+    static class WriteRequest {
         private User user;
         private List<UserEntry> entries;
+
+        public WriteRequest() {
+            // Default no-argument constructor required by Jackson
+        }
 
         public WriteRequest(User user, List<UserEntry> entries) {
             this.user = user;
@@ -53,5 +68,4 @@ public class UserEntriesController {
             this.entries = entries;
         }
     }
-
 }

@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+<script>
+    // Simulate fetching user data from session storage
+    const user = sessionStorage.getItem('user');
+
+    if (user) {
+        console.log('User data retrieved from session:', JSON.parse(user));
+    } else {
+        console.log('No user data found in session.');
+    }
+</script>
+
 <head>
     <link rel="icon" href="public/assets/tree-1578.png" type="image/png">
     <link rel="stylesheet" href="account.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HELLO</title>
-    <script src="script.js" defer></script>
+    <title>Welcome!</title>
 </head>
+
+
+
 <body>
     <div id="header">
         <h1 style="text-align: center;">CarboLoad Emissions Tracker</h1>
     </div>
 
     <main>
-        <div id = "emissionscenter">
+        <div id="emissionscenter">
             <h2>My Activity:</h2>
-            <div id = "emissionsbox">
-                <div class = emissioninstance>
+            <div id="emissionsbox">
+                <div class="emissioninstance">
                     <div>
                         <h3>Drive to Pennsylvania</h3>
                     </div>
@@ -30,15 +43,18 @@
                 </div>
             </div>
         </div>
-        <div id = info>
-            <canvas id = speedometer width = 1000 height = 1000></canvas>
+
+        <!-- Add a button to trigger the saveEntries function -->
+        <div id="saveButtonContainer" type="button" style="text-align: center; margin-top: 20px;">
+            <button id="saveButton" onclick="saveEntries(event)">Save Entries</button>
         </div>
     </main>
 
-    <div id = "footer">
+    <div id="footer">
         <p>
             <a href="LICENSE" target="_blank">View License</a>
         </p>
     </div>
 </body>
+
 </html>

@@ -1,14 +1,18 @@
 package com.carboload.demo.model;
 
+import java.io.Serializable;
+
 /**
  * User Entry.
  * 
  * @apiNote Dates stored as array of three integers
  */
-public class UserEntry {
-    final int date[];
-    final double carbonEmmision;
-    String description;
+public class UserEntry implements Serializable {
+    private static final long serialVersionUID = 1L; // Add a serialVersionUID for version control
+
+    private final int[] date; // Changed to private for encapsulation
+    private final double carbonEmmision;
+    private String description;
 
     public UserEntry(int day, int month, int year, double carbonEmmision, String description) {
         this.date = new int[] { day, month, year };
@@ -26,5 +30,9 @@ public class UserEntry {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
