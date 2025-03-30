@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<script src="src/userentries.js"></script>
 <script>
     // Simulate fetching user data from session storage
     const userJSON = sessionStorage.getItem('user');
-    const user = JSON.parse(userJSON);
 
-    console.log(user);
+    if (userJSON) {
+        // Parse the user JSON and create an instance of the User class
+        const user = User.parseUserFromJson(userJSON);
+
+        // Now `user` is an instance of the User class, and you can use it as needed
+        console.log(user); // Example: Logging the user object
+    } else {
+        console.log('No user data found in sessionStorage.');
+    }
+
+
 </script>
+
 <script src="saveUserEntry.js"></script>
 <script src="UserEntry.js"></script>
 

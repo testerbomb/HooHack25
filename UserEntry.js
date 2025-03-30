@@ -8,11 +8,12 @@ function fetchUserEntries(username) {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      return response.json(); // Parse the JSON response
+      return response.json();
     })
-    .then((data) => {
-      console.log("User Entries:", data); // Log the user entries
-      displayUserEntries(data); // Call a function to display the entries
+    .then((jsonData) => {
+      const entries = Entry.mapFromJsonData(jsonData);
+      console.log("User Entries:", entries);
+      return entries;
     })
     .catch((error) => {
       console.error("Error fetching user entries:", error);
