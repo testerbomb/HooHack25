@@ -23,6 +23,10 @@ class Entry {
 
   // Static method to convert Entry instances back to JSON data
   static toJsonData(entries) {
+    if (!Array.isArray(entries)) {
+      console.error("Expected an array, but got:", entries);
+      return [];
+    }
     return entries.map((entry) => ({
       date: entry.date,
       carbonEmission: entry.carbonEmission,
@@ -68,6 +72,12 @@ class User {
     const user = new User(userData.email, userData.userName);
 
     return user;
+  }
+  static toJson(user) {
+    return JSON.stringify({
+      email: user.email,
+      userName: user.userName,
+    });
   }
   // You can add any additional methods or behaviors to this class as needed
 }
