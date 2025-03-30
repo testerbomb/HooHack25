@@ -1,7 +1,5 @@
 function fetchUserEntries(username) {
-  const url = `http://localhost:8080/api/user-entries/read?username=${encodeURIComponent(
-    username
-  )}`;
+  const url = "http://localhost:8080/api/user-entries/read?request=" + username;
 
   fetch(url, {
     method: "GET",

@@ -15,7 +15,7 @@ public class LogInController {
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest loginRequest) {
         if (loginRequest.getUsername().equals(validUsername) && loginRequest.getPassword().equals(validPassword)) {
-            return new LoginResponse(true, new User(loginRequest.getUsername(), "NOTHING YET"));
+            return new LoginResponse(true, new User("NOTHING YET", loginRequest.username));
         } else {
             return new LoginResponse(false, null);
         }

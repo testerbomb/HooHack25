@@ -3,19 +3,16 @@
 
 <script>
     // Simulate fetching user data from session storage
-    const user = sessionStorage.getItem('user');
+    const userJSON = sessionStorage.getItem('user');
+    const user = JSON.parse(userJSON);
 
-    if (user) {
-        console.log('User data retrieved from session:', JSON.parse(user));
-    } else {
-        console.log('No user data found in session.');
-    }
+    console.log(user);
 </script>
 <script src="saveUserEntry.js"></script>
 <script src="UserEntry.js"></script>
 
 <body>
-    <button type="button" onclick="fetchUserEntries()">Save Entries</button>
+    <button type="button" onclick="saveEntries(event); fetchUserEntries(user.userName)">Save Entries</button>
 </body>
 
 <head>
