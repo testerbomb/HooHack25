@@ -161,7 +161,7 @@ main {
 }
 
 
-#eventDescription {
+#eventAmount {
     width: 96%;
     display: flex;
     flex-grow: 1;

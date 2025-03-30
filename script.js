@@ -1,8 +1,25 @@
 //Adding activity inputs
 const emissionsBox = document.getElementById("emissionsbox");
 
+
+
+const userEntries = [];
+function entryObj(title, amount, date) {
+this.date = date;
+this.title = title;
+this.amount = amount;
+}
+
+
+
 function addemissioninstance(desc = "description", am = "amount", da = "date") {
+<<<<<<< HEAD
   const secondElement = emissionsBox.children[1];
+=======
+    const secondElement = emissionsBox.children[1];
+    let ntry = new entryObj(desc, am, da);
+    userEntries.push(ntry);
+>>>>>>> d0a17ed3f34ca5f8981316c6ea18fb3f4c9216ad
 
   const emissionInstance = document.createElement("div");
   emissionInstance.classList.add("emissioninstance");
@@ -26,9 +43,17 @@ function addemissioninstance(desc = "description", am = "amount", da = "date") {
   emissionInstance.appendChild(amountdiv);
   emissionInstance.appendChild(datediv);
 
+<<<<<<< HEAD
   emissionInstance.addEventListener("click", function () {
     emissionInstance.remove();
   });
+=======
+    if (secondElement) {
+        emissionsBox.insertBefore(emissionInstance, secondElement);
+    } else {
+        emissionsBox.appendChild(emissionInstance);
+    }
+>>>>>>> d0a17ed3f34ca5f8981316c6ea18fb3f4c9216ad
 
   emissionInstance.addEventListener("mouseover", function () {
     emissionInstance.style.cursor = "pointer";
@@ -45,9 +70,21 @@ function addemissioninstance(desc = "description", am = "amount", da = "date") {
 const confirm = document.getElementById("confirm");
 const inputWindow = document.getElementById("inputwindow");
 const addActivity = document.getElementById("addemissioninstance");
+<<<<<<< HEAD
 confirm.addEventListener("click", function () {
   addemissioninstance();
   inputWindow.style.display = "none";
+=======
+
+confirm.addEventListener("click", function() {
+    const title = document.getElementById("eventTitle").value;
+    var subDate = document.getElementById("eventdate").value;
+    const emissionsAm = document.getElementById("eventAmount").value;
+    entry = new entryObj(subDate.split("/"), emissionsAm, title);
+    userEntries.push(entry);
+    addemissioninstance(title, emissionsAm + "g", subDate);
+    inputWindow.style.display = "none";
+>>>>>>> d0a17ed3f34ca5f8981316c6ea18fb3f4c9216ad
 });
 
 addActivity.addEventListener("click", function () {
@@ -166,6 +203,7 @@ function getDay(int) {
 }
 
 function showGraph(row = 12, col = 11, string = "year") {
+<<<<<<< HEAD
   const wgap = width * 0.1;
   const hgap = height * 0.1;
   canvascontext.font = "15px Arial";
@@ -219,6 +257,61 @@ function showGraph(row = 12, col = 11, string = "year") {
           hgap
       );
       canvascontext.stroke();
+=======
+        const wgap = width * .1;
+        const hgap = height * .1;
+        canvascontext.font = "15px Arial";
+        canvascontext.textAlign = "center";
+        canvascontext.textBaseline = "middle";
+        var dates = [];
+        for (entry of userEntries) {
+            dates.push(entry.date);
+        }
+        for (i = 0; i < row; i += 1) {
+            if (i < col) {
+                canvascontext.fillStyle = 'black';
+                if (string == "year") {
+                    const numBase = (col - 1) * 2;
+                    canvascontext.fillText(numBase - (i * 2), width * .1 + wgap / 1.5, height * .1 + (i * (((height - height * .2 - hgap * 2)))) / (col - 1) + hgap)
+                }
+                if (string == "week") {
+                    const numBase = (col - 1) * 5;
+                    canvascontext.fillText(numBase - (i * 5), width * .1 + wgap / 1.5, height * .1 + (i * (((height - height * .2 - hgap * 2)))) / (col - 1) + hgap);       
+                }
+                if (string == "month") {
+                    const numBase = (col - 1) * 50;
+                        canvascontext.fillText(numBase - (i * 50), width * .1 + wgap / 1.5, height * .1 + (i * (((height - height * .2 - hgap * 2)))) / (col - 1) + hgap);
+
+                }
+                canvascontext.fillStyle = 'white';
+                canvascontext.beginPath();
+                canvascontext.moveTo(width * .1 + wgap, height * .1 + (i * (((height - height * .2 - hgap * 2)))) / (col - 1) + hgap);
+                canvascontext.lineTo(width * .1 + width - width * .2 - wgap,  height * .1 + i * (((height - height * .2 - hgap * 2))/ (col - 1)) + hgap);
+                canvascontext.stroke();
+            }
+
+            canvascontext.fillStyle = 'black';
+                if (string == "year") {
+                    canvascontext.font = "11px Arial"
+                    const numBase = (row - 2) * 2;
+                    canvascontext.fillText(getMonth(i), width * .1 + (i * (((width - width * .2 - wgap * 2)))) / (row - 1) + wgap, height * .1 + height - height * .2 - hgap / 1.5)
+                    canvascontext.font = "15px Arial"
+                }
+                if (string == "week") {
+                   const numBase = (row - 2) * 2;
+                   canvascontext.fillText(getDay(i), width * .1 + (i * (((width - width * .2 - wgap * 2)))) / (row - 1) + wgap, height * .1 + height - height * .2 - hgap / 1.5)
+                }
+                if (string == "month") {
+                    const numBase = (row - 2) * 2;
+                    canvascontext.fillText(i , width * .1 + (i * (((width - width * .2 - wgap * 2)))) / (row - 1) + wgap, height * .1 + height - height * .2 - hgap / 1.5)
+                }
+                canvascontext.fillStyle = 'white';
+
+            canvascontext.beginPath();
+            canvascontext.moveTo(width * .1 + (i * (((width - width * .2 - wgap * 2)))) / (row - 1) + wgap, height * .1 + hgap);
+            canvascontext.lineTo(width * .1 + (i * (((width - width * .2 - wgap * 2)))) / (row - 1) + wgap, height * .1 + height - height * .2 - hgap);
+            canvascontext.stroke();
+>>>>>>> d0a17ed3f34ca5f8981316c6ea18fb3f4c9216ad
     }
 
     canvascontext.fillStyle = "black";
