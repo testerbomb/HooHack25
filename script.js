@@ -1,8 +1,21 @@
 //Adding activity inputs
 const emissionsBox = document.getElementById("emissionsbox");
 
+
+
+const userEntries = [];
+function entryObj(title, amount, date) {
+this.date = date;
+this.title = title;
+this.amount = amount;
+}
+
+
+
 function addemissioninstance(desc = "description", am = "amount", da = "date") {
     const secondElement = emissionsBox.children[1];
+    let ntry = new entryObj(desc, am, da);
+    userEntries.push(ntry);
 
     const emissionInstance = document.createElement('div');
     emissionInstance.classList.add("emissioninstance");
@@ -26,14 +39,6 @@ function addemissioninstance(desc = "description", am = "amount", da = "date") {
     emissionInstance.appendChild(amountdiv);
     emissionInstance.appendChild(datediv);
 
-    emissionInstance.addEventListener("click", function() { 
-        emissionInstance.remove();
-    });
-
-    emissionInstance.addEventListener("mouseover", function() { 
-        emissionInstance.style.cursor = "pointer";
-    });
-
     if (secondElement) {
         emissionsBox.insertBefore(emissionInstance, secondElement);
     } else {
@@ -50,8 +55,14 @@ function addemissioninstance(desc = "description", am = "amount", da = "date") {
 const confirm = document.getElementById("confirm");
 const inputWindow = document.getElementById("inputwindow");
 const addActivity = document.getElementById("addemissioninstance");
+
 confirm.addEventListener("click", function() {
-    addemissioninstance();
+    const title = document.getElementById("eventTitle").value;
+    var subDate = document.getElementById("eventdate").value;
+    const emissionsAm = document.getElementById("eventAmount").value;
+    entry = new entryObj(subDate.split("/"), emissionsAm, title);
+    userEntries.push(entry);
+    addemissioninstance(title, emissionsAm + "g", subDate);
     inputWindow.style.display = "none";
 });
 
@@ -165,6 +176,10 @@ function showGraph(row = 12, col = 11, string = "year") {
         canvascontext.font = "15px Arial";
         canvascontext.textAlign = "center";
         canvascontext.textBaseline = "middle";
+        var dates = [];
+        for (entry of userEntries) {
+            dates.push(entry.date);
+        }
         for (i = 0; i < row; i += 1) {
             if (i < col) {
                 canvascontext.fillStyle = 'black';

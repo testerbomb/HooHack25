@@ -23,13 +23,7 @@
 <script src="UserEntry.js"></script>
 
 <body>
-<<<<<<< HEAD
-    <button type="button" onclick="saveEntries()">Save Entries</button>
-    <button type="button" onclick="fetchUserEntries('hoo')">Fetch Entries</button>
-    <button type="button" onclick="displayUserEntries('hoo')">Display Entries</button>
-=======
     <button type="button" onclick="saveEntries(event); fetchUserEntries(user.userName)">Save Entries</button>
->>>>>>> 8fc954a4e763986781179046c9cca44ab03cc5e4
 </body>
 
 <head>
@@ -49,10 +43,10 @@
     </div>
     <div id=eventTitleBox>
         <input type="text" id=eventTitle placeholder="Activity Name">
-        <input type="text" id=eventdate placeholder="Date (optional)">
+        <input type="text" id=eventdate placeholder="Date (x/x/x)">
     </div>
     <div id=eventTitleDescription>
-        <textarea id=eventDescription placeholder="Description"></textarea>
+        <textarea id=eventAmount placeholder="Please enter the amount of carbon emitted by this event, in grams, using only numbers."></textarea>
     </div>
     <div id=confirmation>
         <button id="confirm">Confirm</button>
