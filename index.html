@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="src/userentries.js"></script>
 
 <head>
     <script>
         if (sessionStorage.getItem("user") !== null) {
+            const user = User.parseUserFromJson(sessionStorage.getItem("user"));
+
             window.location.href = "account.html";
         }
     </script>

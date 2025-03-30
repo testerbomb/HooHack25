@@ -14,6 +14,10 @@ function saveEntries() {
     },
   ];
 
+  userTest = User.parseUserFromJson(
+    '{"email": "test@example.com", "userName": "hoo"}'
+  );
+
   fetch("http://localhost:8080/api/user-entries/write", {
     method: "POST",
     headers: {

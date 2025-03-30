@@ -18,6 +18,7 @@ public class UserEntriesController {
 
     @GetMapping("/read")
     public List<UserEntry> readEntries(@RequestParam String request) {
+        System.out.println("Recvied request: " + request);
         return UserFile.readFromFile(request);
     }
 

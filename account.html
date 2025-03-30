@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<script src="src/userentries.js"></script>
 <script>
     // Simulate fetching user data from session storage
-    const user = sessionStorage.getItem('user');
+    const userJSON = sessionStorage.getItem('user');
 
-    if (user) {
-        console.log('User data retrieved from session:', JSON.parse(user));
+    if (userJSON) {
+        // Parse the user JSON and create an instance of the User class
+        const user = User.parseUserFromJson(userJSON);
+
+        // Now `user` is an instance of the User class, and you can use it as needed
+        console.log(user); // Example: Logging the user object
     } else {
-        console.log('No user data found in session.');
+        console.log('No user data found in sessionStorage.');
     }
+
+
 </script>
+
 <script src="saveUserEntry.js"></script>
 <script src="UserEntry.js"></script>
 
 <body>
+<<<<<<< HEAD
     <button type="button" onclick="saveEntries()">Save Entries</button>
     <button type="button" onclick="fetchUserEntries('hoo')">Fetch Entries</button>
     <button type="button" onclick="displayUserEntries('hoo')">Display Entries</button>
+=======
+    <button type="button" onclick="saveEntries(event); fetchUserEntries(user.userName)">Save Entries</button>
+>>>>>>> 8fc954a4e763986781179046c9cca44ab03cc5e4
 </body>
 
 <head>
