@@ -26,6 +26,14 @@ function addemissioninstance(desc = "description", am = "amount", da = "date") {
     emissionInstance.appendChild(amountdiv);
     emissionInstance.appendChild(datediv);
 
+    emissionInstance.addEventListener("click", function() { 
+        emissionInstance.remove();
+    });
+
+    emissionInstance.addEventListener("mouseover", function() { 
+        emissionInstance.style.cursor = "pointer";
+    });
+
     if (secondElement) {
         emissionsBox.insertBefore(emissionInstance, secondElement);
     } else {

@@ -46,6 +46,10 @@ main {
 
 }
 
+#emissionsCenter {
+    width: 100%;
+}
+
 #emissionsbox {
     display: flex;
     flex-direction: column;
@@ -53,8 +57,9 @@ main {
     align-items: center;
     height: 35vw;
     overflow: auto;
+    overflow-x: hidden;
     border-top: 2px solid black;
-    width: 100%;
+    width: 98%;
 }
 
 #emissionsbox > .emissioninstance {
